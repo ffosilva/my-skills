@@ -1,0 +1,63 @@
+{
+  "skill_name": "conventional-commits",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I fixed an issue in our authentication middleware where expired JWT tokens threw an unhandled 500 error instead of returning a 401 Unauthorized response. Suggest a conventional commit message.",
+      "expected_output": "A concise fix commit message with 'fix(auth): ...' or 'fix: ...', imperative mood, lowercase description, no period, and git commit command.",
+      "files": [],
+      "expectations": [
+        "The commit message uses the 'fix' type with an optional scope (e.g., 'fix(auth):' or 'fix:').",
+        "The description uses imperative mood (e.g., 'return', 'handle', 'fix', not 'returned' or 'fixes').",
+        "The commit subject line does not end with a period.",
+        "The output provides a ready-to-use git commit command."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I added an export-to-csv button on the user analytics dashboard in src/views/analytics.tsx and created the CSV generation utility in src/utils/csv.ts. This resolves ticket #142. Please generate a commit message.",
+      "expected_output": "A feat commit message like 'feat(analytics): add csv export for user analytics', optional body/bullet points, issue reference footer (e.g., Closes: #142), and git commit command.",
+      "files": [],
+      "expectations": [
+        "The commit message uses the 'feat' type with an optional scope (e.g., 'feat(analytics):' or 'feat:').",
+        "The commit subject line does not end with a period.",
+        "The output references ticket #142 in a footer (e.g., 'Closes: #142', 'Fixes: #142') or body.",
+        "The output provides a ready-to-use git commit command."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I updated the public user API endpoint /api/v1/users to /api/v2/users and renamed the response field user_uuid to id. Existing clients calling v1 or reading user_uuid will break. Give me the conventional commit message.",
+      "expected_output": "A breaking change commit message with '!' indicator (e.g., 'feat(api)!: ...'), BREAKING CHANGE footer explaining the changes, and git commit command.",
+      "files": [],
+      "expectations": [
+        "Indicates a breaking change with '!' before the colon (e.g., 'feat(api)!:') or in a BREAKING CHANGE footer.",
+        "Includes a 'BREAKING CHANGE:' footer explaining the breaking change.",
+        "The commit subject line does not end with a period.",
+        "The output provides a ready-to-use git commit command."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I modified src/components/ThemeToggle.tsx to add dark mode support. Commit this change.",
+      "expected_output": "Stages modified files and executes git commit directly with a conventional commit message (e.g., feat(theme): add dark mode support) without pausing at a confirmation gate.",
+      "files": [],
+      "expectations": [
+        "Commits directly using git add and git commit without pausing for a confirmation gate.",
+        "The commit message follows conventional commit format (e.g. 'feat(theme): add dark mode support' or 'feat: add dark mode support').",
+        "The output reports the commit result or execution."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "The last commit was 'feat: add user profile page'. I want to change it: scope it to '(profile)' and reference issue #77. Update the commit.",
+      "expected_output": "Uses git commit --amend to update the commit message to include '(profile)' scope and reference issue #77 without creating a redundant commit.",
+      "files": [],
+      "expectations": [
+        "Uses 'git commit --amend' to amend the previous commit.",
+        "Updates the commit message to include the '(profile)' scope (e.g., 'feat(profile): add user profile page').",
+        "References issue #77 in the amended commit."
+      ]
+    }
+  ]
+}
